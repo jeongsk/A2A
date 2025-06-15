@@ -6,7 +6,7 @@
 pip install a2a-sdk
 ```
 
-::: 호출
+::: a2a
     옵션:
         show_root_heading: false
         show_source: false
