@@ -1,6 +1,6 @@
 # Project information
 site_name: Agent2Agent (A2A) 프로토콜 (한국어)
-site_url: https://google-a2a.github.io/A2A/ko/
+site_url: https://jeongsk.github.io/A2A/ko/
 site_description: >-
   에이전트 애플리케이션 간의 통신과 상호 운용성을 가능하게 하는 개방형 프로토콜입니다.
 site_dir: site/ko

@@ -32,7 +32,7 @@ jobs:
       contents: write
       actions: read
 
-    if: github.repository == 'google-a2a/A2A'
+    if: github.repository == 'jeongsk/A2A'
 
     steps:
       - name: Checkout Code
@@ -87,7 +87,7 @@ jobs:
     permissions:
       contents: write
       actions: read
-    if: github.repository == 'google-a2a/A2A' && github.event_name == 'push' && github.ref == 'refs/heads/main' # Only run on push to main for now
+    if: github.repository == 'jeongsk/A2A' && github.event_name == 'push' && github.ref == 'refs/heads/main' # Only run on push to main for now
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
