@@ -1,0 +1,1761 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="에이전트 애플리케이션 간의 통신과 상호 운용성을 가능하게 하는 개방형 프로토콜입니다.">
+      
+      
+      
+        <link rel="canonical" href="https://jeongsk.github.io/A2A/ko/topics/extensions/">
+      
+      
+        <link rel="prev" href="../streaming-and-async/">
+      
+      
+        <link rel="next" href="../../specification/">
+      
+      
+      <link rel="icon" href="../../assets/a2a-logo-black.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Extensions - Agent2Agent (A2A) 프로토콜 (한국어)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Google Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="white">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extensions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Agent2Agent (A2A) 프로토콜 (한국어)" class="md-header__button md-logo" aria-label="Agent2Agent (A2A) 프로토콜 (한국어)" data-md-component="logo">
+      
+  <img src="../../assets/a2a-logo-white.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent2Agent (A2A) 프로토콜 (한국어)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extensions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="white"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="white"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/google-a2a/A2A" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    google-a2a/A2A
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../what-is-a2a/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Topics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../specification/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Specification
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../community/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Community
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../partners/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Partners
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sdk/python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SDK Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tutorials/python/1-introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tutorial (Python)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Agent2Agent (A2A) 프로토콜 (한국어)" class="md-nav__button md-logo" aria-label="Agent2Agent (A2A) 프로토콜 (한국어)" data-md-component="logo">
+      
+  <img src="../../assets/a2a-logo-white.svg" alt="logo">
+
+    </a>
+    Agent2Agent (A2A) 프로토콜 (한국어)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/google-a2a/A2A" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    google-a2a/A2A
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Topics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Topics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-is-a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What is A2A?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Key Concepts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a2a-and-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A and MCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-discovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Discovery
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-ready/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enterprise-Ready Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streaming-and-async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Streaming & Asynchronous Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Extensions
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extensions
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      요약
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      소개
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="소개">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장의 범위
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      아키텍처 개요
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장 선언
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="확장 선언">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      필수 확장
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장 사양
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="확장 사양">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장 종속성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장 활성화
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      구현 고려 사항
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="구현 고려 사항">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      버전 관리
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      검색 가능성 및 게시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      패키징 및 재사용성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      보안
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Community
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../partners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Partners
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../sdk/python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    SDK Reference
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            SDK Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorial (Python)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial (Python)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/1-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/2-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/3-agent-skills-and-card/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Skills & Agent Card
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/4-agent-executor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Executor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/5-start-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/6-interact-with-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interact with Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/7-streaming-and-multiturn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Streaming & Multiturn
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/8-next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Next Steps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      요약
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      소개
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="소개">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장의 범위
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      아키텍처 개요
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장 선언
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="확장 선언">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      필수 확장
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장 사양
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="확장 사양">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장 종속성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      확장 활성화
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      구현 고려 사항
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="구현 고려 사항">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      버전 관리
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      검색 가능성 및 게시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      패키징 및 재사용성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      보안
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="extensions">확장 (Extensions)<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h1>
+<h2 id="_1">요약<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>확장은 Agent2Agent(A2A) 프로토콜에 새로운 데이터, 요구 사항, 메서드 및 상태 머신을 추가하여 확장하는 수단입니다. 에이전트는 자신의 <a href="/specification/#5-agent-discovery-the-agent-card"><code>AgentCard</code></a>에서 확장에 대한 지원을 선언하며, 클라이언트는 에이전트에 요청하는 과정에서 확장이 제공하는 동작을 선택적으로 사용할 수 있습니다. 확장은 URI로 식별되며 해당 확장 사양에 의해 정의됩니다. 누구나 확장을 정의, 게시 및 구현할 수 있습니다.</p>
+<h2 id="_2">소개<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>핵심 A2A 프로토콜은 에이전트 간의 통신을 가능하게 하는 견고한 기반입니다. 그러나 일부 도메인에서는 프로토콜의 일반적인 메서드가 제공하는 것보다 더 많은 추가 구조가 필요하다는 것이 분명합니다. 이러한 경우를 지원하기 위해 확장이 프로토콜에 추가되었습니다. 확장을 통해 에이전트와 클라이언트는 핵심 프로토콜 위에 계층화될 추가적인 사용자 지정 로직을 협상할 수 있습니다.</p>
+<h3 id="_3">확장의 범위<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>확장을 사용하는 가능한 방법의 정확한 집합은 의도적으로 정의되지 않았습니다. 이는 현재 알려진 사용 사례를 넘어 A2A를 확장하는 기능을 용이하게 하기 위함입니다. 그러나 다음과 같은 일부 사용 사례는 명확하게 예측할 수 있습니다.</p>
+<ul>
+<li>
+<p><code>AgentCard</code>에 새로운 정보 노출. 확장은 요청/응답 흐름에 전혀 영향을 미치지 않을 수 있으며, 단순히 <code>AgentCard</code>를 통해 클라이언트에 추가적인 구조화된 정보를 전달하는 방법으로 사용될 수 있습니다. 이를 <em>데이터 전용 확장</em>이라고 합니다. 예를 들어, 확장은 에이전트의 GDPR 준수에 대한 구조화된 데이터를 해당 <code>AgentCard</code>에 추가할 수 있습니다.</p>
+</li>
+<li>
+<p>핵심 요청/응답 메시지에 추가적인 구조 및 상태 변경 요구 사항 오버레이. 예를 들어, 확장은 모든 메시지가 특정 스키마를 준수하는 <code>DataPart</code>를 사용하도록 요구할 수 있습니다. 이러한 유형의 확장은 효과적으로 핵심 A2A 프로토콜에 대한 프로필 역할을 하여 허용되는 값의 범위를 좁힙니다. 이를 <em>프로필 확장</em>이라고 합니다. 예를 들어, 의료 확장은 환자 정보가 포함된 모든 <code>Message</code> 부분이 암호화되어 FHIR 표준을 준수하는 <code>DataPart</code> 내에 배치되도록 의무화할 수 있습니다.</p>
+</li>
+<li>
+<p>완전히 새로운 RPC 메서드 추가. 확장은 에이전트가 핵심 프로토콜 메서드 집합 이상을 구현하도록 정의할 수 있습니다. 이를 <em>메서드 확장</em>이라고 합니다. 예를 들어, <a href="https://github.com/google-a2a/A2A/issues/585#:~:text=Details%20with%20an%20example">'작업 기록' 확장</a>은 이전 작업 목록을 검색하기 위해 <code>tasks/search</code> RPC 메서드를 추가할 수 있습니다.</p>
+</li>
+</ul>
+<p>확장이 허용하지 <em>않는</em> 프로토콜 변경 사항도 일부 있습니다.</p>
+<ul>
+<li>핵심 데이터 구조의 정의 변경. 프로토콜에서 정의한 데이터 구조에 새 필드를 추가하거나 필수 필드를 제거하는 것은 지원되지 않습니다. 확장은 핵심 데이터 구조에 있는 <code>metadata</code> 맵에 사용자 지정 속성을 배치해야 합니다.</li>
+<li>열거형 타입에 새 값 추가. 대신, 확장은 기존 열거형 값을 사용하고 <code>metadata</code> 필드에 추가적인 의미론적 의미를 주석으로 달아야 합니다.</li>
+</ul>
+<p>이러한 제한 사항은 확장이 클라이언트와 에이전트가 수행하는 핵심 유형 유효성 검사를 깨뜨리는 것을 방지하기 위해 존재합니다.</p>
+<h3 id="_4">아키텍처 개요<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>TODO: 구성 요소와 연결을 간략하게 설명하는 다이어그램.</p>
+<h2 id="_5">확장 선언<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>에이전트는 <code>AgentCapabilities</code> 객체에 <code>AgentExtension</code> 객체를 포함시켜 자신의 <code>AgentCard</code>에서 확장에 대한 지원을 선언합니다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">필드명</th>
+<th style="text-align: left;">타입</th>
+<th style="text-align: left;">필수</th>
+<th style="text-align: left;">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>uri</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">예</td>
+<td style="text-align: left;">확장의 URI입니다. 이는 확장 사양이 정의하는 임의의 식별자입니다. 확장 구현은 이 URI를 사용하여 활성화 시기를 식별하고, 클라이언트는 이를 사용하여 확장 호환성을 결정합니다.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>required</code></td>
+<td style="text-align: left;"><code>boolean</code></td>
+<td style="text-align: left;">아니요</td>
+<td style="text-align: left;">에이전트가 클라이언트에게 이 확장을 사용하도록 요구하는지 여부입니다.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">아니요</td>
+<td style="text-align: left;">에이전트가 선언된 확장을 사용하는 방법에 대한 설명입니다. 확장의 전체 세부 정보는 확장 사양에 포함되어야 합니다. 이 필드는 에이전트와 확장 간의 연결을 설명하는 데 유용합니다.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>params</code></td>
+<td style="text-align: left;"><code>object</code></td>
+<td style="text-align: left;">아니요</td>
+<td style="text-align: left;">확장별 구성입니다. 이 필드에 배치할 예상 값(있는 경우)은 확장 사양에 의해 정의됩니다. 이 필드는 확장의 매개변수를 지정하거나 추가적인 에이전트별 데이터를 선언하는 데 사용할 수 있습니다.</td>
+</tr>
+</tbody>
+</table>
+<p>확장을 보여주는 <code>AgentCard</code> 예시:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;매직 8볼&quot;</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;당신의 미래를 알려줄 수 있는 에이전트... 아마도.&quot;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/agents/eightball&quot;</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">&quot;capabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="nt">&quot;streaming&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="nt">&quot;extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">                </span><span class="nt">&quot;uri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/ext/konami-code/v1&quot;</span><span class="p">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;새로운 운세를 잠금 해제하기 위한 치트 코드 제공&quot;</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">                </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">                </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">                    </span><span class="nt">&quot;hints&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">                        </span><span class="s2">&quot;심즈가 급하게 추가 현금이 필요할 때&quot;</span><span class="p">,</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">                        </span><span class="s2">&quot;부인할 수도 있지만, 그 소들에 대한 증거는 이미 확보했습니다.&quot;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">                    </span><span class="p">]</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="p">]</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">&quot;defaultInputModes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;text/plain&quot;</span><span class="p">],</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">&quot;defaultOutputModes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;text/plain&quot;</span><span class="p">],</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nt">&quot;skills&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fortune&quot;</span><span class="p">,</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;점쟁이&quot;</span><span class="p">,</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;신비로운 매직 8볼에게 조언을 구하세요&quot;</span><span class="p">,</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">            </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;신비로운&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;믿을 수 없는&quot;</span><span class="p">]</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="_6">필수 확장<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>확장은 추가 기능을 활성화하는 수단이지만, 일부 에이전트는 핵심 A2A 프로토콜로 표현할 수 있는 것보다 더 엄격한 요구 사항을 가질 것으로 예상됩니다. 예를 들어, 에이전트는 모든 수신 메시지가 작성자에 의해 암호화 서명되도록 요구할 수 있습니다. <code>required</code>로 선언된 확장은 이러한 사용 사례를 지원하기 위한 것입니다.</p>
+<p><code>AgentCard</code>가 필수 확장을 선언하면, 이는 확장의 일부 측면이 요청 구성 방식에 영향을 미친다는 신호를 클라이언트에게 보냅니다. 에이전트는 요청이 에이전트에 전달되는 방식에 직접적인 영향이 없으므로 데이터 전용 확장을 필수로 표시해서는 안 됩니다.</p>
+<p><code>AgentCard</code>가 필수 확장을 선언하고 클라이언트가 해당 필수 확장의 활성화를 요청하지 않으면, 에이전트는 수신 요청을 거부하고 적절한 오류 코드를 반환해야 합니다.</p>
+<p>클라이언트가 확장 활성화를 요청하지만 확장 정의 프로토콜을 따르지 않으면, 에이전트는 요청을 거부하고 적절한 유효성 검사 실패 메시지를 반환해야 합니다.</p>
+<h2 id="_7">확장 사양<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>확장의 세부 정보는 사양에 의해 정의됩니다. 이 문서의 정확한 형식은 지정되지 않았지만, 최소한 다음을 포함해야 합니다.</p>
+<ul>
+<li>
+<p>확장 구현이 식별하고 응답해야 하는 특정 URI. 버전 관리 또는 사양 문서 위치 변경을 고려하여 여러 URI가 동일한 확장을 식별할 수 있습니다. 확장 작성자는 URL 확산을 피하기 위해 <a href="https://w3id.org">w3id</a>와 같은 영구 식별자 서비스를 사용하는 것이 좋습니다.</p>
+</li>
+<li>
+<p><code>AgentCard</code>에 노출된 <code>AgentExtension</code> 객체의 <code>params</code> 필드에 지정된 객체의 스키마 및 의미.</p>
+</li>
+<li>
+<p>클라이언트와 에이전트 간에 통신되는 추가 데이터 구조의 스키마.</p>
+</li>
+<li>
+<p>요청/응답 흐름, 추가 엔드포인트 또는 확장을 구현하는 데 필요한 기타 로직에 대한 세부 정보.</p>
+</li>
+</ul>
+<h3 id="_8">확장 종속성<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>확장은 다른 확장에 의존할 수 있습니다. 이 종속성은 확장의 핵심 기능이 종속 항목 없이는 실행될 수 없는 경우 필수이거나, 다른 확장이 있을 때 일부 추가 기능이 활성화되는 경우 선택 사항일 수 있습니다. 확장 사양은 종속성과 해당 유형을 문서화해야 합니다.</p>
+<p>종속성은 <code>AgentExtension</code> 객체가 아닌 확장 사양 내에서 선언됩니다. 확장 <em>및</em> 해당 확장의 사양에 나열된 모든 필수 종속성을 활성화하는 것은 클라이언트의 책임입니다.</p>
+<h2 id="_9">확장 활성화<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>확장은 기본적으로 비활성 상태여야 합니다. 이는 확장 미인식 클라이언트가 확장이 제공하는 세부 정보와 데이터에 부담을 느끼지 않는 "기본값으로 기준선" 경험을 제공합니다. 대신, 클라이언트와 에이전트는 협상을 수행하여 요청에 대해 어떤 확장이 활성 상태인지 결정합니다. 이 협상은 클라이언트가 에이전트에 대한 HTTP 요청에 <code>X-A2A-Extensions</code> 헤더를 포함하여 시작됩니다. 이 헤더의 값은 클라이언트가 활성화하려는 확장 URI 목록이어야 합니다.</p>
+<p>클라이언트는 모든 확장의 활성화를 요청할 수 있습니다. 에이전트는 요청에서 지원되는 확장을 식별하고 활성화를 수행할 책임이 있습니다. 에이전트에서 지원하지 않는 요청된 확장은 무시할 수 있습니다.</p>
+<p>모든 확장이 활성화 가능한 것은 아닙니다. 데이터 전용 확장은 AgentCard를 통해 추가 정보를 제공하기 위해서만 존재합니다. 클라이언트는 여전히 이러한 확장의 활성화를 요청할 수 있습니다. 확장은 활성화 시 추가 로직을 수행하지 않으므로 요청에 영향을 미치지 않아야 합니다.</p>
+<p>일부 확장에는 활성화를 위한 추가 전제 조건이 있을 수 있습니다. 예를 들어, 일부 민감한 확장에는 확장을 활성화할 수 있는 사람을 지정하는 해당 접근 제어 목록이 있을 수 있습니다. 요청된 확장 중 어떤 확장이 활성화되는지 결정하는 것은 에이전트에게 달려 있습니다.</p>
+<p>클라이언트가 필수 종속성이 있는 확장의 활성화를 요청하는 경우, 해당 클라이언트는 해당 종속 확장의 활성화도 요청하고 해당 요구 사항을 준수해야 합니다. 클라이언트가 요청된 확장에 대한 모든 필수 종속성을 요청하지 않으면 서버는 적절한 오류와 함께 요청을 실패시킬 수 있습니다.</p>
+<p>에이전트가 활성화된 모든 확장을 식별하면, 응답에는 활성화된 모든 확장을 식별하는 <code>X-A2A-Extensions</code> 헤더가 포함되어야 합니다.</p>
+<p>확장 활성화를 보여주는 요청 예시:</p>
+<div class="language-HTTP highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nf">POST</span> <span class="nn">/agents/eightball</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="na">Host</span><span class="o">:</span> <span class="l">example.com</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="na">X-A2A-Extensions</span><span class="o">:</span> <span class="l">https://example.com/ext/konami-code/v1</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="na">Content-Length</span><span class="o">:</span> <span class="l">519</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;message/send&quot;</span><span class="p">,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;message&quot;</span><span class="p">,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;오 매직 8볼, 오늘 비가 올까요?&quot;</span><span class="p">}]</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="nt">&quot;https://example.com/ext/konami-code/v1/code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;motherlode&quot;</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>그리고 활성화된 확장을 반영하는 해당 응답:</p>
+<div class="language-HTTP highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="na">X-A2A-Extensions</span><span class="o">:</span> <span class="l">https://example.com/ext/konami-code/v1</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="na">Content-Length</span><span class="o">:</span> <span class="l">338</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">{</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nt">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;message&quot;</span><span class="p">,</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;agent&quot;</span><span class="p">,</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;바로 그거예요!&quot;</span><span class="p">}]</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="_10">구현 고려 사항<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>A2A 프로토콜은 확장의 "무엇"을 정의하지만, 이 섹션에서는 확장 구현을 작성, 버전 관리 및 배포하기 위한 모범 사례인 "방법"에 대한 지침을 제공합니다.</p>
+<h3 id="_11">버전 관리<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>확장 사양은 필연적으로 발전할 것입니다. 클라이언트와 에이전트가 호환되는 구현을 협상할 수 있도록 명확한 버전 관리 전략을 갖는 것이 중요합니다.</p>
+<ul>
+<li><strong>권장 사항</strong>: 확장의 URI를 기본 버전 식별자로 사용합니다. <code>https://example.com/ext/my-extension/v1</code> 또는 <code>https://example.com/ext/my-extension/v2</code>와 같이 URI 경로에 직접 버전 번호를 포함하는 것이 좋습니다.</li>
+<li><strong>호환성이 손상되는 변경</strong>: 확장의 로직, 데이터 구조 또는 필수 매개변수에 호환성이 손상되는 변경을 도입할 때는 새 URI를 <strong>반드시</strong> 사용해야 합니다. 이렇게 하면 모호성을 방지하고 <code>/v1</code>을 지원하는 에이전트가 <code>/v2</code> 요청을 잘못 처리하지 않도록 합니다.</li>
+<li><strong>불일치 처리</strong>: 클라이언트가 에이전트가 지원하지 않는 확장 버전을 요청하는 경우(예: 클라이언트가 <code>/v2</code>를 요청하지만 에이전트는 <code>/v1</code>만 지원), 에이전트는 해당 확장에 대한 활성화 요청을 무시해야 <strong>합니다(SHOULD)</strong>. 클라이언트의 로직은 요청된 버전에 명시적으로 연결되어 있으므로 에이전트는 다른 버전으로 "대체"하려고 시도해서는 안 됩니다 <strong>(MUST NOT)</strong>.</li>
+</ul>
+<h3 id="_12">검색 가능성 및 게시<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>확장이 유용하려면 다른 개발자가 해당 사양을 찾고 사용 방법을 이해할 수 있어야 합니다.</p>
+<ul>
+<li><strong>사양 호스팅</strong>: 확장 사양 문서는 확장의 URI에서 호스팅되어야 <strong>합니다(SHOULD)</strong>. 이렇게 하면 개발자가 식별자를 간단히 확인하여 설명서에 쉽게 액세스할 수 있습니다.</li>
+<li><strong>영구 식별자</strong>: 끊어진 링크 또는 변경되는 도메인 문제를 방지하기 위해 작성자는 확장 URI에 대해 <a href="https://w3id.org">w3id.org</a>와 같은 영구 식별자 서비스를 사용하는 것이 좋습니다.</li>
+<li><strong>커뮤니티 레지스트리 (향후)</strong>: 향후 A2A 커뮤니티는 사용 가능한 확장을 검색하고 찾아볼 수 있는 중앙 레지스트리를 구축할 수 있습니다.</li>
+</ul>
+<h3 id="_13">패키징 및 재사용성<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>채택을 촉진하기 위해 확장 로직은 기존 A2A 클라이언트 및 서버 애플리케이션에 쉽게 통합할 수 있는 재사용 가능한 라이브러리로 패키징되어야 합니다.</p>
+<ul>
+<li>
+<p><strong>배포</strong>: 확장 구현은 해당 언어 생태계에 대한 표준 패키지(예: Python용 PyPI 패키지, TypeScript/JavaScript용 npm 패키지)로 배포되어야 합니다.</p>
+</li>
+<li>
+<p><strong>간단한 통합</strong>: 목표는 개발자를 위한 거의 "플러그 앤 플레이" 경험이어야 합니다. 잘 설계된 확장 패키지를 사용하면 개발자가 최소한의 코드로 서버에 추가할 수 있어야 합니다. 예를 들면 다음과 같습니다.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 가상 Python 서버 통합</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">konami_code_extension</span><span class="w"> </span><span class="kn">import</span> <span class="n">CheatCodeHandler</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">a2a.server</span><span class="w"> </span><span class="kn">import</span> <span class="n">A2AServer</span><span class="p">,</span> <span class="n">DefaultRequestHandler</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># 확장은 해당 로직을 처리하기 위해 요청 처리기에 연결됩니다.</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">extension</span> <span class="o">=</span> <span class="n">CheatCodeHandler</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">extension</span><span class="o">.</span><span class="n">add_cheat</span><span class="p">(</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">code</span><span class="o">=</span><span class="s2">&quot;motherlode&quot;</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;심즈가 급하게 추가 현금이 필요할 때&quot;</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">extension</span><span class="o">.</span><span class="n">add_cheat</span><span class="p">(</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="n">code</span><span class="o">=</span><span class="s2">&quot;thereisnocowlevel&quot;</span><span class="p">,</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;부인할 수도 있지만, 그 소들에 대한 증거는 이미 확보했습니다.&quot;</span><span class="p">,</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">request_handler</span> <span class="o">=</span> <span class="n">DefaultRequestHandler</span><span class="p">(</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="n">agent_executor</span><span class="o">=</span><span class="n">MyAgentExecutor</span><span class="p">(</span><span class="n">extension</span><span class="p">),</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="n">task_store</span><span class="o">=</span><span class="n">InMemoryTaskStore</span><span class="p">(),</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="n">extensions</span><span class="o">=</span><span class="p">[</span><span class="n">extension</span><span class="p">]</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="p">)</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="n">server</span> <span class="o">=</span> <span class="n">A2AServer</span><span class="p">(</span><span class="n">agent_card</span><span class="p">,</span> <span class="n">request_handler</span><span class="p">)</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="n">server</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="_14">보안<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>확장은 A2A 프로토콜의 핵심 동작을 수정하므로 새로운 보안 고려 사항을 도입합니다.</p>
+<ul>
+<li><strong>입력 유효성 검사</strong>: 확장에 의해 도입된 모든 새 데이터 필드, 매개변수 또는 메서드는 구현에 의해 엄격하게 유효성을 검사해야 <strong>합니다(MUST)</strong>. 신뢰를 설정하기 위한 프로토콜 정의 수단이 없는 한 외부 당사자의 모든 확장 관련 데이터를 신뢰할 수 없는 입력으로 처리합니다.</li>
+<li><strong><code>required</code> 확장의 범위</strong>: <code>AgentCard</code>에서 확장을 <code>required: true</code>로 표시할 때 주의하십시오. 이렇게 하면 모든 클라이언트에 대한 하드 종속성이 생성됩니다. 에이전트의 핵심 기능 및 보안 상태에 기본적인 확장(예: 메시지 서명 확장)에만 이 기능을 사용하십시오.</li>
+<li><strong>인증 및 권한 부여</strong>: 확장이 새 메서드를 추가하는 경우, 구현은 이러한 메서드가 핵심 A2A 메서드와 동일한 인증 및 권한 부여 검사를 받도록 <strong>반드시</strong> 보장해야 합니다. 확장은 에이전트의 기본 보안 제어를 우회하는 방법을 제공해서는 안 됩니다 <strong>(MUST NOT)</strong>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../streaming-and-async/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Streaming &amp; Asynchronous Operations">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Streaming & Asynchronous Operations
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../specification/" class="md-footer__link md-footer__link--next" aria-label="Next: Specification">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Specification
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright Google 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "content.tabs.link", "navigation.expand", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.top", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
